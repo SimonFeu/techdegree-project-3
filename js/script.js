@@ -107,6 +107,8 @@ const selectMethod = payment.querySelector([(value = "select method")]);
  * */
 paypal.style.display = "none";
 bitcoin.style.display = "none";
+payment.options[0].style.display = "none";
+payment.options[1].setAttribute("selected", "selected");
 
 payment.addEventListener("change", () => {
   //"Select Payment Method" is set to display "none"
@@ -160,7 +162,7 @@ for (let i = 0; i < validationMassage.length; i++) {
     "element" can be null.
  */
 
-function showMessage(validation, messageId, element) {
+function showMessage(event, validation, messageId, element) {
   if (validation) {
     messageId.style.display = "none";
     if (element != null) {
@@ -172,6 +174,7 @@ function showMessage(validation, messageId, element) {
     if (element != null) {
       element.style.borderColor = "#e72222";
       element.style.borderWidth = "2px";
+      return event.preventDefault();
     }
   }
 }
@@ -232,14 +235,13 @@ function validateCVV() {
 
 //Validating Data on submiting the form
 form.addEventListener("submit", e => {
-  e.preventDefault();
-  showMessage(validateName(), validationMessageName, name);
-  showMessage(validateEmail(), validationMessageMail, email);
-  showMessage(validateActivities(), validationMessageActivities, null);
+  showMessage(e, validateName(), validationMessageName, name);
+  showMessage(e, validateEmail(), validationMessageMail, email);
+  showMessage(e, validateActivities(), validationMessageActivities, null);
   //Validation message only appears if Credit Card is selected
   if (payment.options.selectedIndex === 1) {
-    showMessage(validateCardNumber(), validationMessageCc, ccNum);
-    showMessage(validateZip(), validationMessageZip, zip);
-    showMessage(validateCVV(), validationMessageCvv, cvv);
+    showMessage(e, validateCardNumber(), validationMessageCc, ccNum);
+    showMessage(e, validateZip(), validationMessageZip, zip);
+    showMessage(e, validateCVV(), validationMessageCvv, cvv);
   }
 });
