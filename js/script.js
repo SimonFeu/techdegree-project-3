@@ -104,6 +104,8 @@ const selectMethod = payment.querySelector([(value = "select method")]);
  * "Payment Info" section
  * Credit Card payment option is shown by default.
  * Thats why paypal and bitcoin Payment information is set to display "none"
+ * The option "Select Payment Method" should not be displayed
+ * The option "Credit Card" is displayed by default
  * */
 paypal.style.display = "none";
 bitcoin.style.display = "none";
@@ -153,13 +155,15 @@ for (let i = 0; i < validationMassage.length; i++) {
 /****************************
   Function to show Message
  ***************************
- *  This function takes the parameter validation, massageId, element
+ *  This function takes the parameter event, validation, massageId, element
  *  If the validation has the value "true", the message in the index.html isn't displayed
-    and the Borders of the textfilds stay normal
+    and the borders of the textfilds stay normal
  *  If the validation has the value "false", the message in the index.html is displayed
     and if its a textfield the border color switches to red.
  *  There are no colorchanges for the checkbox elements. Thats why the value of the parameter
     "element" can be null.
+ *  The parameter "event" is needed for the addEventListener. If the validation has the value "false"
+    "preventDefault" is used to prevent the action triggered by the event.
  */
 
 function showMessage(event, validation, messageId, element) {
