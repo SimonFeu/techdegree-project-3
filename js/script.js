@@ -178,8 +178,8 @@ function showMessage(event, validation, messageId, element) {
     if (element != null) {
       element.style.borderColor = "#e72222";
       element.style.borderWidth = "2px";
-      return event.preventDefault();
     }
+    return event.preventDefault();
   }
 }
 
@@ -197,7 +197,7 @@ function validateName() {
 
 //Email: Email has to be formated like: name@adress.com
 function validateEmail() {
-  const regex = /^[^@]+@[^@.]+\.[a-z]+$/i;
+  const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   if (!regex.test(email.value)) {
     return false;
   } else {
