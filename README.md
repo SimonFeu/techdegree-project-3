@@ -1,5 +1,5 @@
-# techdegree-project-3
-## Interactive Form
+# Interactive Form
+## Techdegree Project 3
 
 Live Version:  https://simonfeu.github.io/techdegree-project-3/
 
